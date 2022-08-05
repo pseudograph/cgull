@@ -6,6 +6,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
 #include "Texture.h"
+#include "Config.h"
 
 extern SDL_Renderer* gRenderer;
 
@@ -13,14 +14,14 @@ bool Texture::loadFromFile(const std::string &path) {
     SDL_Texture* newTexture{ nullptr };
     SDL_Surface* loadedSurface{ IMG_Load(path.c_str()) };
     if (loadedSurface == nullptr) {
-        std::cerr << "Texture::loadFromFile failed to load image" << std::endl;
+        std::cerr << Errors::TEXTURE_LOADFILE_FAILED << std::endl;
         std::cerr << SDL_GetError() << std::endl;
         return false;
     }
     SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
     newTexture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
     if (newTexture == nullptr) {
-        std::cerr << "Texture::loadFromFile failed to create texture from " << path.c_str() << std::endl;
+        std::cerr << Errors::TEXTURE_LOADTEXTURE_FAILED << path.c_str() << std::endl;
         std::cerr << SDL_GetError() << std::endl;
         return false;
     }

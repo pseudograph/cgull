@@ -13,7 +13,7 @@ include_directories(
         ${SDL2TTF_INCLUDE_DIRS}
 )
 
-add_executable(cgull main.cpp src/Config.h src/Texture/Texture.cpp src/Texture/Texture.h src/Screen/Screen.cpp src/Screen/Screen.h src/Text/Text.cpp src/Text/Text.h src/Splash/Splash.cpp src/Splash/Splash.h src/Button/Button.cpp src/Button/Button.h src/Background/Background.cpp src/Background/Background.h src/Sprite/Sprite.cpp src/Sprite/Sprite.h)
+add_executable(cgull main.cpp include/Config.h src/Texture/Texture.cpp src/Texture/Texture.h src/Screen/Screen.cpp src/Screen/Screen.h src/Text/Text.cpp src/Text/Text.h src/Splash/Splash.cpp src/Splash/Splash.h src/Button/Button.cpp src/Button/Button.h src/Background/Background.cpp src/Background/Background.h src/Sprite/Sprite.cpp src/Sprite/Sprite.h)
 target_link_libraries(cgull
         SDL2
         SDL2_image

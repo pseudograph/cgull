@@ -16,7 +16,7 @@ private:
     SDL_Rect* clip;
     BUTTONSTATUS mButtonStatus;
 public:
-    Button(double x, double y, double w, double h);
+    Button(double x, double y, double w, double h)
 
     void setX(double x, double y);
     void setX(int x, int y);

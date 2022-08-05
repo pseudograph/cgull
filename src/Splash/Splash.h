@@ -3,13 +3,17 @@
 #define CGULL_SPLASH_H
 
 #include <vector>
-#include "Screen/Screen.h"
 #include "Config.h"
+#include "Texture/Texture.h"
+#include <cstdarg>
 
 class Splash {
 private:
-    std::vector<Screen> splashes;
+    std::vector<Texture> splashes;
 public:
+    Splash(const std::string& splashes...) {
+
+    }
     void render();
 };
 
