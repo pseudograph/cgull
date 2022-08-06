@@ -5,7 +5,7 @@
 #include "Config.h"
 #include "Texture/Texture.h"
 
-class Button : Texture {
+class Button : public Texture {
     enum class BUTTONSTATUS {
         UP,
         DOWN,

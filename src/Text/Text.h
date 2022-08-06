@@ -6,7 +6,7 @@
 #include <SDL2/SDL_ttf.h>
 #include "Texture/Texture.h"
 
-class Text : Texture {
+class Text : public Texture {
 private:
 
 public:

@@ -26,6 +26,14 @@ int main() {
     std::vector<std::string> splashes{ Config::STUDIO, Config::ENGINE };
     Splash splashSequence{ splashes };
     splashSequence.render();
+    Sprite sprite{ "../assets/sprites/sampleSprite.png" };
+    sprite.render();
+    std::string filler;
+    std::getline(std::cin, filler);
+    sprite.renderLeft();
+    std::getline(std::cin, filler);
+    sprite.renderRight();
+    std::getline(std::cin, filler);
     std::cout << IMG_GetError() << std::endl;
     std::cout << SDL_GetError() << std::endl;
 }

@@ -6,10 +6,8 @@
 #include <string>
 
 
-
-
 class Texture {
-protected:
+public:
     SDL_Texture *mTexture;
     int mWidth;
     int mHeight;
@@ -26,6 +24,7 @@ public:
     Texture(Texture&& moveTex) {
         mTexture = moveTex.mTexture;
         moveTex.mTexture = nullptr;
+        SDL_QueryTexture(mTexture, nullptr, nullptr, &mWidth, &mHeight);
     }
 
     Texture& operator=(Texture&& moveTex) noexcept {
@@ -33,6 +32,7 @@ public:
         free();
         mTexture = moveTex.mTexture;
         moveTex.mTexture = nullptr;
+        SDL_QueryTexture(mTexture, nullptr, nullptr, &mWidth, &mHeight);
         return *this;
     }
 
