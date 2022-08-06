@@ -8,7 +8,7 @@ namespace Config {
     const std::string WINDOW_TITLE{ "Ancient Astronauts" };
     // dimensions
     const int SCREEN_WIDTH{ 1280 };
-    const int SCREEN_HEIGHT{ 720 };
+    const int SCREEN_HEIGHT{ 960 };
     const int TEXTBOX_X{ SCREEN_WIDTH / 4 };
     const int TEXTBOX_Y{ SCREEN_HEIGHT * 3 / 4 };
     const int TEXTBOX_WIDTH{ SCREEN_WIDTH / 2 };
@@ -24,12 +24,13 @@ namespace Config {
 
     // assets
     // splashes
-    const std::string STUDIO{ "assets/splashes/fullgarde.png" };
-    const std::string ENGINE{ "assets/splashes/cgull.png" };
+    const std::string STUDIO{ "../assets/splashes/fullgarde.png" };
+    const std::string ENGINE{ "../assets/splashes/cgull.png" };
 }
 
 namespace Errors {
     // main.cpp
+    const std::string INIT_FAILED { "Failed to initialize" };
     const std::string INIT_SDL_FAILED{ "Failed to initialize SDL" };
     const std::string INIT_SETHINT_FAILED{ "Failed to set SDL hint" };
     const std::string INIT_WINDOW_FAILED{ "Failed to create window" };

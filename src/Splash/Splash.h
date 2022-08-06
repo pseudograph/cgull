@@ -3,16 +3,18 @@
 #define CGULL_SPLASH_H
 
 #include <vector>
+#include <iostream>
 #include "Config.h"
 #include "Texture/Texture.h"
-#include <cstdarg>
 
 class Splash {
-private:
-    std::vector<Texture> splashes;
 public:
-    Splash(const std::string& splashes...) {
-
+    std::vector<Texture> mSplashes;
+public:
+    Splash(const std::vector<std::string>& splashStrings) {
+        for (const auto& i : splashStrings) {
+            mSplashes.emplace_back(i);
+        }
     }
     void render();
 };

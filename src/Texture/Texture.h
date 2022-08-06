@@ -13,10 +13,28 @@ protected:
     SDL_Texture *mTexture;
     int mWidth;
     int mHeight;
+    Uint32 mFormat;
 
 public:
     Texture() : mTexture{ nullptr }, mWidth{ 0 }, mHeight{ 0 }
     {}
+
+    Texture(const std::string& path) : Texture{} {
+        loadFromFile(path);
+    }
+
+    Texture(Texture&& moveTex) {
+        mTexture = moveTex.mTexture;
+        moveTex.mTexture = nullptr;
+    }
+
+    Texture& operator=(Texture&& moveTex) noexcept {
+        if (&moveTex == this) { return *this; }
+        free();
+        mTexture = moveTex.mTexture;
+        moveTex.mTexture = nullptr;
+        return *this;
+    }
 
     ~Texture() {
         free();
@@ -31,7 +49,7 @@ public:
     [[nodiscard]] int getWidth() const;
     [[nodiscard]] int getHeight() const;
 
-    virtual void render(int x, int y, SDL_Rect* clip = nullptr, double angle = 0.0, SDL_Point* centre = nullptr, SDL_RendererFlip flip = SDL_FLIP_NONE);
+    virtual void render(int x, int y, SDL_Rect* clip = nullptr, double angle = 0.0, SDL_Point* centre = nullptr, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
 };
 
 

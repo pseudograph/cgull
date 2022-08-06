@@ -12,6 +12,9 @@ extern SDL_Renderer* gRenderer;
 
 bool Texture::loadFromFile(const std::string &path) {
     SDL_Texture* newTexture{ nullptr };
+    newTexture = IMG_LoadTexture(gRenderer, path.c_str());
+    // old loading method
+    /**
     SDL_Surface* loadedSurface{ IMG_Load(path.c_str()) };
     if (loadedSurface == nullptr) {
         std::cerr << Errors::TEXTURE_LOADFILE_FAILED << std::endl;
@@ -28,6 +31,8 @@ bool Texture::loadFromFile(const std::string &path) {
     mWidth = loadedSurface->w;
     mHeight = loadedSurface->h;
     SDL_FreeSurface(loadedSurface);
+    **/
+    SDL_QueryTexture(newTexture, &mFormat, nullptr, &mWidth, &mHeight);
     mTexture = newTexture;
     return true;
 }
@@ -41,13 +46,14 @@ void Texture::free() {
     }
 }
 
-void Texture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* centre, SDL_RendererFlip flip) {
+void Texture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* centre, SDL_RendererFlip flip) const {
     SDL_Rect renderQuad{ x, y, mWidth, mHeight };
     if (clip != nullptr) {
         renderQuad.w = clip->w;
         renderQuad.h = clip->h;
     }
-    SDL_RenderCopyEx(gRenderer, mTexture, clip, &renderQuad, angle, centre, flip);
+    SDL_RenderCopy(gRenderer, mTexture, nullptr, nullptr);
+    SDL_RenderPresent(gRenderer);
 }
 
 void Texture::setColor(Uint8 red, Uint8 green, Uint8 blue) {

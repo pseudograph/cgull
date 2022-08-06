@@ -16,13 +16,18 @@ void close();
 
 SDL_Window* gWindow{ nullptr };
 SDL_Renderer* gRenderer{ nullptr };
+TTF_Font* gFont{ nullptr };
 
 int main() {
     if (!init()) {
         std::cerr << Errors::INIT_FAILED << std::endl;
         return -1;
     }
-
+    std::vector<std::string> splashes{ Config::STUDIO, Config::ENGINE };
+    Splash splashSequence{ splashes };
+    splashSequence.render();
+    std::cout << IMG_GetError() << std::endl;
+    std::cout << SDL_GetError() << std::endl;
 }
 
 bool init() {
