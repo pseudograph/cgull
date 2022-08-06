@@ -6,6 +6,9 @@
 
 class Sprite : Texture {
 
+public:
+    void renderLeft();
+    void renderRight();
 };
 
 
