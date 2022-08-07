@@ -4,24 +4,32 @@
 
 #include <SDL.h>
 #include <string>
+#include "Config.h"
 
 
 class Texture {
-public:
-    SDL_Texture *mTexture;
-    int mWidth;
-    int mHeight;
-    Uint32 mFormat;
+protected:
+    SDL_Texture *mTexture{};
+    int mX{};
+    int mY{};
+    int mWidth{};
+    int mHeight{};
+    Uint32 mFormat{};
 
 public:
-    Texture() : mTexture{ nullptr }, mWidth{ 0 }, mHeight{ 0 }
+    Texture() : mTexture{ nullptr }, mWidth{ 0 }, mHeight{ 0 }, mX{ Config::SCREEN_WIDTH / 2 }, mY{ Config::SCREEN_HEIGHT / 2 }
     {}
 
-    Texture(const std::string& path) : Texture{} {
+    explicit Texture(const std::string& path) : Texture{ path, 0, 0 }
+    {}
+
+    Texture(const std::string& path, int x, int y) {
+        mX = x;
+        mY = y;
         loadFromFile(path);
     }
 
-    Texture(Texture&& moveTex) {
+    Texture(Texture&& moveTex)  noexcept {
         mTexture = moveTex.mTexture;
         moveTex.mTexture = nullptr;
         SDL_QueryTexture(mTexture, nullptr, nullptr, &mWidth, &mHeight);
@@ -49,7 +57,8 @@ public:
     [[nodiscard]] int getWidth() const;
     [[nodiscard]] int getHeight() const;
 
-    virtual void render(int x, int y, SDL_Rect* clip = nullptr, double angle = 0.0, SDL_Point* centre = nullptr, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
+    virtual void render(int x, int y, SDL_Rect* clip = nullptr, double angle = 0.0, SDL_Point* centre = nullptr, SDL_RendererFlip flip = SDL_FLIP_NONE);
+    virtual void render();
 };
 
 

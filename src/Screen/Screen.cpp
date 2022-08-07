@@ -3,3 +3,9 @@
 //
 
 #include "Screen.h"
+
+void Screen::render() {
+    for (Texture& i : mTextures) {
+        i.render();
+    }
+}

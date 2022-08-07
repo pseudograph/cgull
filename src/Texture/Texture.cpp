@@ -46,14 +46,17 @@ void Texture::free() {
     }
 }
 
-void Texture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* centre, SDL_RendererFlip flip) const {
+void Texture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* centre, SDL_RendererFlip flip) {
     SDL_Rect renderQuad{ x, y, mWidth, mHeight };
     if (clip != nullptr) {
         renderQuad.w = clip->w;
         renderQuad.h = clip->h;
     }
     SDL_RenderCopy(gRenderer, mTexture, nullptr, nullptr);
-    SDL_RenderPresent(gRenderer);
+}
+
+void Texture::render() {
+    Texture::render(mX, mY);
 }
 
 void Texture::setColor(Uint8 red, Uint8 green, Uint8 blue) {
@@ -75,5 +78,3 @@ int Texture::getWidth() const {
 int Texture::getHeight() const {
     return mHeight;
 }
-
-

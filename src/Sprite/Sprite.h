@@ -11,16 +11,20 @@ public:
     Sprite() : Texture{}
     {}
 
-    Sprite(const std::string& path) : Texture{ path }
+    explicit Sprite(const std::string& path) : Texture{ path }
     {}
 
-    void render(int x = Config::SCENE_WIDTH / 2,
-                int y = Config::SCENE_HEIGHT - getHeight(),
+    void render(int x,
+                int y,
                 SDL_Rect* clip = nullptr,
                 double angle = 0.0,
                 SDL_Point* centre = nullptr,
                 SDL_RendererFlip flip = SDL_FLIP_NONE)
-                const override;
+                override;
+    void render(SDL_Rect* clip = nullptr,
+                double angle = 0.0,
+                SDL_Point* centre = nullptr,
+                SDL_RendererFlip flip = SDL_FLIP_NONE) ;
     void renderLeft();
     void renderRight();
 };

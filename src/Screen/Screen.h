@@ -11,7 +11,8 @@
 class Screen {
 private:
     Background bg;
-    std::vector<Button> buttons;
+    std::vector<Texture> mTextures;
+    std::vector<Button> mButtons;
 public:
     void render();
 };
