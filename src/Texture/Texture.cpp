@@ -78,3 +78,7 @@ int Texture::getWidth() const {
 int Texture::getHeight() const {
     return mHeight;
 }
+
+SDL_Texture *Texture::getTexture() const {
+    return mTexture;
+}

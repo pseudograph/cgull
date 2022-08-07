@@ -56,6 +56,7 @@ public:
     void free();
     [[nodiscard]] int getWidth() const;
     [[nodiscard]] int getHeight() const;
+    [[nodiscard]] SDL_Texture* getTexture() const;
 
     virtual void render(int x, int y, SDL_Rect* clip = nullptr, double angle = 0.0, SDL_Point* centre = nullptr, SDL_RendererFlip flip = SDL_FLIP_NONE);
     virtual void render();

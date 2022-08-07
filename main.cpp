@@ -24,8 +24,21 @@ int main() {
         return -1;
     }
     std::vector<std::string> splashes{ Config::STUDIO, Config::ENGINE };
+    Button button{ "../assets/buttons/testButton.png", 0.5, 0.5 };
     Splash splashSequence{ splashes };
     splashSequence.render();
+    SDL_Event e;
+    bool quit{ false };
+    while (!quit) {
+        while (SDL_PollEvent(&e) != 0) {
+            if (e.type == SDL_QUIT) {
+                quit = true;
+            }
+            button.handleEvent(&e);
+        }
+        button.render();
+        SDL_RenderPresent(gRenderer);
+    }
     std::cout << IMG_GetError() << std::endl;
     std::cout << SDL_GetError() << std::endl;
 }
