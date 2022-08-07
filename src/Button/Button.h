@@ -6,21 +6,25 @@
 #include "Texture/Texture.h"
 
 class Button : public Texture {
-    enum class BUTTONSTATUS {
-        UP,
-        DOWN,
-        MOTION
+    enum class BUTTONSPRITE {
+        BUTTON_SPRITE_MOUSE_OUT,
+        BUTTON_SPRITE_MOUSE_OVER,
+        BUTTON_SPRITE_MOUSE_DOWN,
+        BUTTON_SPRITE_MOUSE_UP
     };
 private:
-    SDL_Rect box;
-    SDL_Rect* clip;
-    BUTTONSTATUS mButtonStatus;
+    SDL_Point mPosition;
+    BUTTONSPRITE mButtonStatus;
 public:
-    Button(double x, double y, double w, double h);
+    Button(double x, double y) {
+        mPosition.x = x;
+        mPosition.y = y;
+        mButtonStatus = BUTTONSPRITE::BUTTON_SPRITE_MOUSE_OUT
+    }
 
-    void setX(double x, double y);
-    void setX(int x, int y);
-    void updateStatus(SDL_Event* e);
+    void setPosition(double x, double y);
+    void handleEvent(SDL_Event* e);
+    void render();
 };
 
 
